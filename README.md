@@ -4,5 +4,7 @@
 
 ```
 npm i
-npm run pack
+npm run build:windows
+npm run build:linux
+npm run build:mac
 ```

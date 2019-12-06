@@ -1,0 +1,58 @@
+{
+  "name": "FacileThings",
+  "version": "1.0.0",
+  "description": "FacileThings application",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "build:windows": "electron-builder -w",
+    "build:linux": "electron-builder -l",
+    "build:mac": "electron-builder -m"
+  },
+  "repository": "https://github.com/bgornicki/facilethings-app",
+  "keywords": [
+    "FacileThings",
+    "GTD",
+    "Productivity"
+  ],
+  "author": {
+    "email": "bartlomiej@gornicki.org",
+    "name": "Bartłomiej Górnicki"
+  },
+  "devDependencies": {
+    "electron": "7.1.3",
+    "electron-builder": "21.2.0"
+  },
+  "build": {
+    "appId": "org.gornicki.facilethings",
+    "productName": "FacileThings",
+    "mac": {
+      "category": "your.app.category.type"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "license": "LICENSE.md",
+      "runAfterFinish": true
+    },
+    "linux": {
+      "target": "deb",
+      "executableName": "FacileThings",
+      "desktop": {
+        "Name": "FacileThings",
+        "Comment": "FacileThings app",
+        "Categories": "Productivity"
+      }
+    }
+  }
+}
