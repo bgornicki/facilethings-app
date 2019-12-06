@@ -19,7 +19,7 @@ function createWindow() {
         }
     });
 
-    tray = new Tray(path.join(__dirname, 'assets/icons/128x128.png'));
+    tray = new Tray(path.join(__dirname, 'assets/icons/32x32.png'));
 
     const contextMenu = Menu.buildFromTemplate([
         {
@@ -79,7 +79,16 @@ if(!gotLock) {
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
-        if (mainWindow === null) createWindow()
+        if (mainWindow === null) {
+            createWindow();
+        }
+        else {
+            mainWindow.show();
+            if (mainWindow.isMinimized()) {
+                mainWindow.restore();
+            }
+            mainWindow.focus();
+        }
     });
 
 }
