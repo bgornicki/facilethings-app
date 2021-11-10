@@ -1,6 +1,6 @@
 {
   "name": "FacileThings",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "FacileThings application",
   "main": "src/main.js",
   "scripts": {

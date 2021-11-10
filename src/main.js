@@ -38,12 +38,7 @@ function createWindow() {
     tray.setContextMenu(contextMenu);
     tray.setToolTip('FacileThings');
 
-    mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
-        callback({responseHeaders: Object.fromEntries(Object.entries(details.responseHeaders).filter(header => !/x-frame-options/i.test(header[0])))});
-    });
-
-    // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, 'index.html'));
+    mainWindow.loadURL('https://app.facilethings.com');
 
     mainWindow.on('browser-window-created', function (e, window) {
         window.setMenu(null);
