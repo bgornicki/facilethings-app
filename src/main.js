@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, Tray} = require('electron');
 const path = require('path');
+const { shell } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,10 +14,7 @@ function createWindow() {
         width: 1400,
         height: 900,
         autoHideMenuBar: true,
-        icon: path.join(__dirname, 'assets/icons/256x256.png'),
-        webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
-        }
+        icon: path.join(__dirname, 'assets/icons/256x256.png')
     });
 
     tray = new Tray(path.join(__dirname, 'assets/icons/32x32.png'));
@@ -40,15 +38,16 @@ function createWindow() {
 
     mainWindow.loadURL('https://app.facilethings.com');
 
-    mainWindow.on('browser-window-created', function (e, window) {
-        window.setMenu(null);
-    });
-
     mainWindow.on('close', function (event) {
         event.preventDefault();
         mainWindow.hide();
         return false;
     });
+
+    mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+        shell.openExternal(url);
+        return { action: 'deny' }
+    })
 
 }
 
